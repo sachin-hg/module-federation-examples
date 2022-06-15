@@ -11,13 +11,14 @@ const FederationStatsPlugin = require("webpack-federation-stats-plugin");
 module.exports = merge(common, {
   name: "client",
   target: "web",
-  entry: ["@babel/polyfill", path.resolve(__dirname, "../../src/index.js")],
+  entry: [path.resolve(__dirname, "../../src/index.js")],
   output: {
     publicPath: "http://localhost:3002/static/",
   },
   module: {
     rules: clientLoaders,
   },
+  stats: {errorDetails: true},
   plugins: [
     ...plugins.client,
     new FederationStatsPlugin(),

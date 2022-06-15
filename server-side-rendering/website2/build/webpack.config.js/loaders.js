@@ -1,18 +1,19 @@
 const ExtractCSSChunks = require("mini-css-extract-plugin");
 const path = require("path");
 
-const babelLoader = {
+const babelLoader = envName => ({
   test: /\.(js|jsx|mjs)$/,
   exclude: /node_modules/,
   use: [
     {
       loader: "babel-loader",
       options: {
+        envName,
         cacheDirectory: false,
       },
     },
   ],
-};
+});
 
 const baseStyleLoader = (initialLoaders) => ({
   test: /\.(scss|css)$/,
@@ -136,7 +137,7 @@ const client = [
   {
     oneOf: [
       mjsLoader,
-      babelLoader,
+      babelLoader('web'),
       cssLoaderClient,
       urlLoaderClient,
       fileLoaderClient,
@@ -148,7 +149,7 @@ const server = [
   {
     oneOf: [
       mjsLoader,
-      babelLoader,
+      babelLoader('node'),
       cssLoaderServer,
       urlLoaderServer,
       fileLoaderServer,

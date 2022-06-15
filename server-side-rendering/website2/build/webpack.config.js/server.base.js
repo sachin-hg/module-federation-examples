@@ -10,17 +10,18 @@ const plugins = require("./plugins");
 const config = require("../config");
 const deps = require('../../package.json').dependencies
 const { serverPath } = config[process.env.NODE_ENV || "development"];
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = merge(common, {
   name: "server",
   target: "async-node",
-  entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
+  entry: [path.resolve(__dirname, "../../server/index.js")],
   output: {
     path: serverPath,
     filename: "[name].js",
     libraryTarget: "commonjs2",
   },
-  externals: ["enhanced-resolve"],
+  externals: [nodeExternals(), "enhanced-resolve"],
   module: {
     rules: serverLoaders,
   },
@@ -42,5 +43,6 @@ module.exports = merge(common, {
   ],
   stats: {
     colors: true,
+    errorDetails: true
   },
 });
