@@ -6,7 +6,7 @@ const baseConfig = require("./server.base");
 const config = merge(baseConfig, {
   plugins: [
     // new WriteFileWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
   mode: "development",
   performance: {

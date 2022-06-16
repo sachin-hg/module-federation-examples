@@ -30,7 +30,7 @@ module.exports = merge(common, {
   },
   plugins: [
     ...plugins.server,
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new ModuleFederationPlugin({
       name: "website2",
       library: { type: "commonjs2" },
