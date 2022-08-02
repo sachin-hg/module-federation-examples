@@ -1,7 +1,6 @@
 const express = require('express');
 const chalk = require('chalk');
 const initMiddleware = require('./middleware');
-
 const { raw: env } = require('../build/env')();
 
 const app = express();
@@ -20,7 +19,6 @@ const done = () => {
     );
   });
 };
-
 app.use('/restart', (req, res) => {
   process.on('exit', function () {
     require('child_process').spawn(process.argv.shift(), process.argv, {
@@ -90,4 +88,4 @@ if (module.hot) {
 console.log('basline app');
 initMiddleware(express, app, done);
 
-module.exports = app;
+// module.exports = app;

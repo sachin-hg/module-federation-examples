@@ -41,7 +41,7 @@ module.exports = merge(common, {
       library: { type: "commonjs2" },
       filename: "container.js",
       remotes: {
-        website2: remotePath
+        // website2: remotePath
         // website2: {
         //   // we dont need to do this, just intersting to see in action
         //   external: `promise new Promise((resolve)=>{ console.log('requring remote');delete require.cache['${remotePath}']; resolve(require('${remotePath}')) })`
@@ -54,4 +54,5 @@ module.exports = merge(common, {
     colors: true,
     errorDetails: true
   },
+  devtool: 'source-map'
 });
